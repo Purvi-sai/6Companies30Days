@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool isRectangleCover(vector<vector<int>>& rectangles) {
+        unordered_map<long long, int> point;
+        const long long N=1000000;
+        for(vector<int>& x:rectangles){
+            int x1=x[0];
+            int y1=x[1];
+            int x2=x[2];
+            int y2=x[3];
+            point[x1*N+y1]++;
+            point[x1*N+y2]--;
+            point[x2*N+y1]--;
+            point[x2*N+y2]++;
+        }
+        int Npoint=0;
+        for(auto ptr=point.begin();ptr!=point.end();ptr++)
+            if(ptr->second!=0){
+                if(abs(ptr->second)!=1) return false;
+                    Npoint++;
+            }
+        return Npoint==4;
+    }
+};
