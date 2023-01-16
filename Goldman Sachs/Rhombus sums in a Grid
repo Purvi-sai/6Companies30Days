@@ -1,0 +1,35 @@
+class Solution {
+public:
+    vector<int> getBiggestThree(vector<vector<int>>& grid) {
+        int  row = grid.size(), col = grid[0].size();
+        
+        priority_queue<int> pq;
+        for (auto &r: grid) {
+            for(auto &c: r) pq.push(c);
+        }
+        for (int k = 1; k < min(row, col); ++k) {
+            for (int i = 0; i + 2 * k < row; ++i) {
+                for (int j = 0; j + 2 * k < col; ++j) {
+                    int sum = 0;
+                    
+                    for (int m = 0; m < k; ++m) {
+                        sum += grid[i + k - m][j + m];
+                        sum += grid[i + m][j + k + m]; 
+                        sum += grid[i + k + m][j + 2 * k - m]; 
+                        sum += grid[i + 2 * k - m][j + k - m]; 
+                    }
+                    pq.push(sum);
+                }
+            }
+        } 
+        vector<int> res;
+        while (pq.empty() == false) {
+            if (res.empty() == true || res.back() != pq.top()) {
+                res.push_back(pq.top());
+            }
+            if (res.size() == 3) return res;
+            pq.pop();
+        }
+        return res;
+    }
+};
