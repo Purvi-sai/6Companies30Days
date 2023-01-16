@@ -1,7 +1,7 @@
 # #6Companies30Days-Challenge  #ReviseWithArsh
 
 
-Company 1 Microsoft Completed
+Company 1: Microsoft 
 
 
-Company 2 Goldsman Sachs Completed
+Company 2: Goldman Sachs
